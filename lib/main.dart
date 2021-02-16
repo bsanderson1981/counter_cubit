@@ -4,7 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CoutnerCubit extends Cubit<int> {
   CoutnerCubit() : super(0);
 
-  void increment() => emit(state + 1);
+  void increment() => emit(
+    
+   // singcount= ((state +1) % 13),
+
+    state + 1);
 }
 
 void main() {
@@ -47,6 +51,47 @@ class CounterPage extends StatelessWidget {
         },
         child: Icon(Icons.add),
       ),
-    );
+     bottomNavigationBar: BottomAppBar(
+        child: Row(
+          children: [
+            //IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+            Spacer(),
+            Container(
+              height: 55.0,
+              width: 1.0,
+            ),
+            //TODO get bakerdoz and etotal on footer working need to pass data between main and bagelcounter
+
+           //int f(CounterCubitState c) => c.dozcount.to;
+                BlocBuilder<CoutnerCubit, int>(
+                  builder: (context, state) {
+                    return Text("test:  $state",
+                                //Text("Baker's Dozen:" + (int f(CounterCubitState c) => c.dozcount.to.toStringAsExponential(2)),
+                                //Text("Baker's Dozen:"  + int funterCubitState.dozcount.toStringAsExponential(2),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.w500));
+                
+            //Spacer(),
+                            //IconButton(icon: Icon(Icons.search), onPressed: () {}),
+                            //IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
+                          
+                   } 
+                   ),
+                       
+           ]
+            ),
+            shape: CircularNotchedRectangle(),
+        color: Colors.lightBlue,
+        notchMargin: 8.0,
+            
+            )
+               
+    )
+   
+   
+   
+    ;
   }
 }
