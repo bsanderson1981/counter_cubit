@@ -4,14 +4,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CoutnerCubit extends Cubit<int> {
   static var dozecount = 0;
   static var singlecount1 = 0;
+  static var totalbagels = 0;
 
   CoutnerCubit() : super(0);
 
   void increment() {
-    
-    dozecount = ((state) ~/ 13);
-    singlecount1 = ((state) % 13);
+    totalbagels = ((state) + 1);
+    dozecount = ((state +1) ~/ 13);
+    singlecount1 = ((state +1) % 13);
     print("state: $state");
+    print("totalbagels: $totalbagels");
     print("dozecount: $dozecount");
     print("singlecount1: $singlecount1");
 
@@ -19,7 +21,7 @@ class CoutnerCubit extends Cubit<int> {
     // holdsingle = ((state. + 1) % 13);
 
     emit(
-      state + 1,
+      state +1,
       // state + 1, past working
     );
   }
