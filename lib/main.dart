@@ -10,8 +10,8 @@ class CoutnerCubit extends Cubit<int> {
 
   void increment() {
     totalbagels = ((state) + 1);
-    dozecount = ((state +1) ~/ 13);
-    singlecount1 = ((state +1) % 13);
+    dozecount = ((state + 1) ~/ 13);
+    singlecount1 = ((state + 1) % 13);
     print("state: $state");
     print("totalbagels: $totalbagels");
     print("dozecount: $dozecount");
@@ -21,9 +21,30 @@ class CoutnerCubit extends Cubit<int> {
     // holdsingle = ((state. + 1) % 13);
 
     emit(
-      state +1,
+      state + 1,
       // state + 1, past working
     );
+  }
+
+  void decincrement() {
+    if (state == 0) {
+    } else {
+      totalbagels = ((state) - 1);
+      dozecount = ((state - 1) ~/ 13);
+      singlecount1 = ((state - 1) % 13);
+      print("state: $state");
+      print("totalbagels: $totalbagels");
+      print("dozecount: $dozecount");
+      print("singlecount1: $singlecount1");
+
+      //holdtotal = ((state + 1) ~/ 13);
+      // holdsingle = ((state. + 1) % 13);
+
+      emit(
+        state - 1,
+        // state + 1, past working
+      );
+    }
   }
 }
 
@@ -61,12 +82,29 @@ class CounterPage extends StatelessWidget {
             );
           },
         )),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            context.read<CoutnerCubit>().increment();
-          },
-          child: Icon(Icons.add),
+        floatingActionButton: Row(
+          children: [
+            FloatingActionButton(
+              onPressed: () {
+                context.read<CoutnerCubit>().increment();
+              },
+              child: Icon(Icons.add),
+            ),
+            FloatingActionButton(
+              onPressed: () {
+                context.read<CoutnerCubit>().decincrement();
+              },
+              child: Icon(Icons.remove),
+            ),
+          ],
         ),
+
+        /*   floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            context.read<CoutnerCubit>().decincrement();
+          },
+          child: Icon(Icons.remove,
+        ), */
         bottomNavigationBar: BottomAppBar(
           child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
             //IconButton(icon: Icon(Icons.menu), onPressed: () {}),
